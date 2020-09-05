@@ -1,6 +1,6 @@
 # Wool Supply Chain
 
-This repository contains an Ethereum DApp that demonstrates the Supply Chain flow from when it is planted by the farmer till when it's worn as cloth.
+This repository contains an Ethereum DApp that demonstrates the Supply Chain flow for `wool` from when it is planted by the farmer till when it's worn as cloth.
 
 There are 4 actors involved in this supply chain:
 
