@@ -1,6 +1,6 @@
-Transaction Hash: 0x85e6b75ff679fb00c31f6a3e1656959ab3b6e199afc896494cd18e0039740e1b
+Transaction Hash: 0x092b34f17f0e880f6c25f1babac985f10c58cd1b6fe6c6cf3ca9c72ee4625fbc
 
-Contract Address: 0x80a60664639748ea47f531d307148B8C4700CA32
+Contract Address: 0x426D6f37C27D074de75838E7D162C1dE02B87743
 
 Truffle v5.1.34 (core: 5.1.34)
 
