@@ -60,9 +60,9 @@ Contract Address: 0x426D6f37C27D074de75838E7D162C1dE02B87743
 
 #### Here are the development tools used
 
-Remix IDE
+Remix IDE - (Helped in quickly deploying and testing out the sub-contracts and ensure everything is working fine)
 
-Truffle v5.1.34 (core: 5.1.34)
+Truffle v5.1.34 (core: 5.1.34) - used its webpack box as it contains all the starter code needed and I only just had to jump into implementation right away
 
 Solidity v0.5.16 (solc-js)
 
