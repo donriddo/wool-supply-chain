@@ -1,0 +1,36 @@
+{
+  "name": "wool-supply-chain",
+  "version": "1.0.0",
+  "description": "supply chain for wool from when it is planted till it's worn as cloth.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd app && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donriddo/wool-supply-chain.git"
+  },
+  "keywords": [
+    "supply",
+    "chain",
+    "smart",
+    "contract",
+    "truffle",
+    "infura",
+    "wool"
+  ],
+  "author": "Ridwan Taiwo <donriddo@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donriddo/wool-supply-chain/issues"
+  },
+  "homepage": "https://github.com/donriddo/wool-supply-chain#readme",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.0.43",
+    "dotenv": "^8.2.0"
+  }
+}

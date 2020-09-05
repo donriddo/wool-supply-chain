@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wool Supply Chain</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff;
+      padding: 2em;
+      font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+      color: #212121;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+
+    .bold {
+      font-weight: bolder;
+    }
+
+    input {
+      width: 80%;
+      padding: 12px 20px;
+      margin: 10px 0;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      background-color: #00BCD4;
+      font-size: 16px;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sell {
+      background-color: white;
+      color: #D1C4E9;
+    }
+
+    .wsc-intro {
+      background-color: #0097A7;
+      color: white;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .form-group {
+      background-color: #0097A7;
+      color: black;
+      width: 80%;
+      padding: 30px;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+    }
+
+    .form-break {
+      background-color: #fff;
+      color: white;
+      width: 100%;
+      padding: 5px;
+    }
+
+    .horizontal-rule {
+      background-color: #BDBDBD;
+    }
+
+    #wsc-chain {
+      grid-area: chain;
+    }
+
+    #meta {
+      grid-area: meta;
+    }
+
+    #main {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "chain meta";
+    }
+
+    #currentItem {
+      position: fixed;
+      right: 10px;
+      top: 0;
+      background-color: #f8f8f8;
+      padding: 20px;
+      padding-top: 0;
+    }
+
+    #currentActor {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      background-color: #f8f8f8;
+      padding: 20px;
+      display: none;
+    }
+
+    #seeCurrentActorBtn {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      padding: 20px;
+    }
+
+    #seeCurrentItemBtn {
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      padding: 20px;
+    }
+
+    #closeCurrentActorBtn,
+    #closeCurrentItemBtn {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      height: 20px;
+      width: 40px;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+      border: none;
+      font-size: 10px;
+      padding: 2px;
+      text-decoration: none;
+      margin: 0;
+    }
+
+    #currentActor>.form-group {
+      color: black;
+      width: 80%;
+      padding: 5px;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn-buy" id="seeCurrentActorBtn" type="button" data-id="5">See Current Actor</button>
+  <div id="currentActor">
+    <button class="btn-buy" id="closeCurrentActorBtn" type="button" data-id="5">Close</button>
+    <h3>Current Actor</h3>
+    <small>All action performed will be from this account</small>
+    <p>Address: <span id="currentActorId"></span></p>
+    <hr>
+    <h4>Set Current Actor</h4>
+    <div class="form-group">
+      Address
+      <br><br>
+      <select id="setCurrentActor" name="setCurrentActor">
+        <option value="">Select Account</option>
+      </select>
+      <br><br>
+      <button class="btn-buy" id="setCurrentActorBtn" type="button" data-id="5">Set Actor</button>
+    </div>
+  </div>
+  <button class="btn-buy" id="seeCurrentItemBtn" type="button" data-id="5">See Item State</button>
+  <div id="currentItem">
+    <button class="btn-buy" id="closeCurrentItemBtn" type="button" data-id="5">Close</button>
+    <h3>Current Item</h3>
+    <p>UPC: <span id="currentItemUpc"></span></p>
+    <p>State: <span id="currentItemState"></span></p>
+    <p>Next State: <span id="nextItemState"></span></p>
+  </div>
+  <div class="container">
+    <h1 style="text-align: center;">Wool Supply Chain</h1>
+    <hr>
+    <p style="text-align: center;">Prove the authenticity of wool using the Ethereum blockchain.</p>
+  </div>
+
+  <div id="main">
+    <div id="wsc-chain">
+      <h2>Farmer Section</h2>
+      <h4>Plant Wool</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="plantWoolUpc" name="plantWoolUpc" value=1><br>
+        Origin Farmer ID
+        <br>
+        <input type="text" id="originFarmerID" name="originFarmerID" value="" size="50"><br>
+        Farm Name
+        <br>
+        <input type="text" id="originFarmName" name="originFarmName" value="John Doe"><br>
+        Farm Information
+        <br>
+        <input type="text" id="originFarmInformation" name="originFarmInformation" value="Yarra Valley"><br>
+        Farm Latitude
+        <br>
+        <input type="text" id="originFarmLatitude" name="originFarmLatitude" value="-38.239770"><br>
+        Farm Longitude
+        <br>
+        <input type="text" id="originFarmLongitude" name="originFarmLongitude" value="144.341490"><br>
+        Notes
+        <br>
+        <input type="text" id="productNotes" name="productNotes" value=""><br>
+        <button class="btn-buy" id="plantWoolBtn" type="button" data-id="5">Plant New Wool</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Harvest Wool</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="harvestWoolUpc" name="harvestWoolUpc" value=1><br>
+        Wool Price
+        <br>
+        <input type="number" id="woolPrice" name="woolPrice"><br>
+        <button class="btn-buy" id="harvestWoolBtn" type="button" data-id="5">Harvest Wool</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Meet Wool Processor</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="meetProcessorUpc" name="meetProcessorUpc" value=1><br>
+        <button class="btn-buy" id="meetProcessorBtn" type="button" data-id="5">Meet Wool Processor</button>
+      </div>
+      <div class=form-break></div>
+      <h2>Wool Processor Section</h2>
+      <h4>Ship Wool from Farmer</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="shipWoolUpc" name="shipWoolUpc" value=1><br>
+        Amount to pay
+        <br>
+        <input type="number" id="shipWoolAmount" name="shipWoolAmount"><br>
+        <button class="btn-buy" id="shipWoolBtn" type="button" data-id="5">Ship Wool</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Process Wool into Fabric</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="processWoolUpc" name="processWoolUpc" value=1><br>
+        Fabric Price
+        <br>
+        <input type="number" id="fabricPrice" name="fabricPrice"><br>
+        <button class="btn-buy" id="processWoolBtn" type="button" data-id="5">Process Wool</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Meet Fabric Designer</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="meetDesignerUpc" name="meetDesignerUpc" value=1><br>
+        <button class="btn-buy" id="meetDesignerBtn" type="button" data-id="5">Meet Fabric Designer</button>
+      </div>
+      <div class=form-break></div>
+      <h2>Fabric Designer Section</h2>
+      <h4>Ship Fabric from Processor</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="shipFabricUpc" name="shipFabricUpc" value=1><br>
+        Amount to pay
+        <br>
+        <input type="number" id="shipFabricAmount" name="shipFabricAmount"><br>
+        <button class="btn-buy" id="shipFabricBtn" type="button" data-id="5">Ship Fabric</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Sew Fabric into Cloth</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="sewFabricUpc" name="sewFabricUpc" value=1><br>
+        Cloth Price
+        <br>
+        <input type="number" id="clothPrice" name="clothPrice"><br>
+        <button class="btn-buy" id="sewFabricBtn" type="button" data-id="5">Sew Fabric</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Advertise</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="advertiseUpc" name="advertiseUpc" value=1><br>
+        <button class="btn-buy" id="advertiseBtn" type="button" data-id="5">Meet Fabric Designer</button>
+      </div>
+      <div class=form-break></div>
+      <h2>Buyer Section</h2>
+      <h4>Buy Cloth</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="buyClothUpc" name="buyClothUpc" value=1><br>
+        Amount to pay
+        <br>
+        <input type="number" id="buyClothAmount" name="buyClothAmount"><br>
+        <button class="btn-buy" id="buyClothBtn" type="button" data-id="5">Buy Cloth</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Get Cloth Details</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="clothDetailsUpc" name="clothDetailsUpc" value=1><br>
+        <button class="btn-buy" id="clothDetailsBtn" type="button" data-id="5">Fetch</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Get Cloth Origin</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="clothOriginUpc" name="clothOriginUpc" value=1><br>
+        <button class="btn-buy" id="clothOriginBtn" type="button" data-id="5">Fetch</button>
+      </div>
+      <div class=form-break></div>
+      <h4>See everyone involved in making a Cloth</h4>
+      <div class="form-group">
+        UPC
+        <br>
+        <input type="number" id="clothActorsUpc" name="clothActorsUpc" value=1><br>
+        <button class="btn-buy" id="clothActorsBtn" type="button" data-id="5">Fetch</button>
+      </div>
+      <div class=form-break></div>
+      <hr>
+    </div>
+    <div id="meta">
+      <div id="error-pane"></div>
+      <h2>Actors</h2>
+      <h4>Add new Farmer</h4>
+      <div class="form-group">
+        User Address
+        <br>
+        <input type="text" id="newFarmerId" name="newFarmerId"><br>
+        <button class="btn-buy" id="newFarmerBtn" type="button" data-id="5">Add Farmer</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Add new Wool Processor</h4>
+      <div class="form-group">
+        User Address
+        <br>
+        <input type="text" id="newWoolProcessorId" name="newWoolProcessorId"><br>
+        <button class="btn-buy" id="newWoolProcessorBtn" type="button" data-id="5">Add Processor</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Add new Fabric Designer</h4>
+      <div class="form-group">
+        User Address
+        <br>
+        <input type="text" id="newFabricDesignerId" name="newFabricDesignerId"><br>
+        <button class="btn-buy" id="newFabricDesignerBtn" type="button" data-id="5">Add Designer</button>
+      </div>
+      <div class=form-break></div>
+      <h4>Add new Buyer</h4>
+      <div class="form-group">
+        User Address
+        <br>
+        <input type="text" id="newBuyerId" name="newBuyerId"><br>
+        <button class="btn-buy" id="newBuyerBtn" type="button" data-id="5">Add Buyer</button>
+      </div>
+      <div class=form-break></div>
+    </div>
+  </div>
+
+  <h2>Transaction History<span id="wsc-history"></span></h2>
+  <div>
+    <ul id="wsc-events">
+      <!-- Events will appear here from app.js -->
+    </ul>
+    <br>
+    <hr>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
