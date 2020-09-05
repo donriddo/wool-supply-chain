@@ -14,18 +14,22 @@ There are 4 actors involved in this supply chain:
 
 The UML diagrams below illustrates the relationships and actions performed by each actor and how it affects the state of the wool.
 
+## Activity Diagram
 ![Activity diagram](images/Clothing_Business_Activity_diagram.jpeg)
 
+## Sequence Diagram
 ![Sequence diagram](images/Clothing_Business_Sequence_diagram.jpeg)
 
+## State Diagram
 ![State diagram](images/Clothing_Business_State_diagram.jpeg)
 
+## Data model
 ![Data model](images/Clothing_Business_Data_Model.jpeg)
 
 
 ## Steps to run the application
 
-0. Make sure you have Truffle installed (https://www.trufflesuite.com/docs/truffle/getting-started/installation). Also have Metamask chrome extension installed
+0. Make sure you have Truffle installed (https://www.trufflesuite.com/docs/truffle/getting-started/installation). Also have Metamask chrome extension installed (https://metamask.io/)
 
 1. Clone this repository
 
