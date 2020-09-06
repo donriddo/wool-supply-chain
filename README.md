@@ -2,6 +2,14 @@
 
 This repository contains an Ethereum DApp that demonstrates the Supply Chain flow for `wool` from when it is planted by the farmer till when it's worn as cloth.
 
+## Problem
+
+Right now, it's really difficult to tell apart which cloth is the original or which is fake. We have seen fake Gucci's and fake Fendi's. Only few people who are well acquainted with these materials can tell them apart. Also, there's no way to keep track of the different stages that the end product - the cloth, has passed through.
+
+## Solution
+
+This Supply Chain DApp aims to provide transparency and a means of authenticity to the above problem. By keeping track of how the cloth was made from when it was planted as wool till when it is worn as cloth, consumers can verify with certainty the authenticity what they have purchased. They can also see the different parties that are involved in producing the cloth.
+
 There are 4 actors involved in this supply chain:
 
 1. Farmer
