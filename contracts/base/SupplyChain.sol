@@ -2,12 +2,10 @@
 pragma solidity >=0.4.21 <=0.7.0;
 
 import "../access_control/AccessControl.sol";
+import "../core/Ownable.sol";
 
 // Define a contract 'Supplychain'
-contract SupplyChain is AccessControl {
-    // Define 'theOwner'
-    address theOwner;
-
+contract SupplyChain is AccessControl, Ownable {
     // Define a variable called 'upc' for Universal Product Code (UPC)
     uint256 upc;
 
@@ -72,15 +70,6 @@ contract SupplyChain is AccessControl {
     // Define a modifier that checks if item exists
     modifier itemExist(uint256 _upc) {
         require(items[_upc].sku != 0, "Item does not exist");
-        _;
-    }
-
-    // Define a modifer that checks to see if msg.sender == owner of the contract
-    modifier onlyTheOwner() {
-        require(
-            msg.sender == theOwner,
-            "Only owner of contract can access this resource"
-        );
         _;
     }
 
@@ -185,7 +174,6 @@ contract SupplyChain is AccessControl {
     // and set 'sku' to 1
     // and set 'upc' to 1
     constructor() public payable {
-        theOwner = msg.sender;
         sku = 1;
         upc = 1;
     }
@@ -196,10 +184,9 @@ contract SupplyChain is AccessControl {
     }
 
     // Define a function 'kill' if required
-    function kill() public {
-        if (msg.sender == theOwner) {
-            selfdestruct(_make_payable(theOwner));
-        }
+    function kill() public onlyOwner {
+        address contractOwner = owner();
+        selfdestruct(_make_payable(contractOwner));
     }
 
     // Define a function 'plantItem' that allows a farmer to mark an item 'Planted'
