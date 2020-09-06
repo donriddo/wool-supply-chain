@@ -62,9 +62,9 @@ The UML diagrams below illustrates the relationships and actions performed by ea
 
 ### This DApp has been deployed onto the Rinkeby test network. Find details below
 
-Transaction Hash: **0x092b34f17f0e880f6c25f1babac985f10c58cd1b6fe6c6cf3ca9c72ee4625fbc**
+Transaction Hash: **0x7e36108674547428d422157e0d7850d8b303e25f9867b3eaf925dab4f7ac5f0d**
 
-Contract Address: **0x426D6f37C27D074de75838E7D162C1dE02B87743**
+Contract Address: **0x3841A5d26f46cd49dDCa40B5928e8732C356CA15**
 
 #### Here are the development tools used
 
