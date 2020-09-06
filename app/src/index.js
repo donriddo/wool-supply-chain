@@ -72,6 +72,11 @@ const App = {
         $("#currentItem").hide();
       });
 
+      $('#closeResponsePanelBtn').click(e => {
+        e.preventDefault();
+        $("#responsePanel").hide();
+      });
+
       $('#newFarmerBtn').click(e => {
         e.preventDefault();
         const value = $("#newFarmerId").val();
@@ -279,6 +284,7 @@ const App = {
         );
         console.log({ clothDetails });
         await this.setCurrentItem(clothDetailsUpc);
+        this.setResponse(clothDetails);
       });
 
       $('#clothOriginBtn').click(async e => {
@@ -294,6 +300,7 @@ const App = {
         );
         console.log({ clothOrigin });
         await this.setCurrentItem(clothOriginUpc);
+        this.setResponse(clothOrigin);
       });
 
       $('#clothActorsBtn').click(async e => {
@@ -309,6 +316,7 @@ const App = {
         );
         console.log({ clothActors });
         await this.setCurrentItem(clothActorsUpc);
+        this.setResponse(clothActors);
       });
     } catch (error) {
       console.error("Could not connect to contract or chain.", error);
@@ -329,6 +337,7 @@ const App = {
       return await fn.apply(null, args)[method]({ from: this.currentActor, value: gasFee });
     } catch (error) {
       console.log(error);
+      this.setResponse(error);
     }
   },
 
@@ -339,6 +348,12 @@ const App = {
     $('#currentItemState').text(this.itemStates[+response]);
     $('#nextItemState').text(this.itemStates[+response + 1] || '');
     $("#currentItem").show();
+  },
+
+  setResponse: (response) => {
+    $('#responsePane').text(JSON.stringify(response, null, 2));
+    console.log({ response });
+    $("#responsePanel").show();
   },
 
   addNewActor: async function (type, account) {
@@ -492,17 +507,6 @@ const App = {
       purchase,
       upc,
       `send:${amount}`,
-    );
-  },
-
-  fetchItemState: async function (
-    upc,
-  ) {
-    const { fetchItemState } = this.meta.methods;
-    return await this.callAsyncFunction(
-      fetchItemState,
-      upc,
-      'call',
     );
   },
 

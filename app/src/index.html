@@ -109,6 +109,26 @@
       display: none;
     }
 
+    #responsePane {
+      background-color: #f8f8f8;
+      color: #0097A7;
+      width: 90%;
+      padding: 10px;
+      overflow: scroll;
+    }
+
+    #responsePanel {
+      position: fixed;
+      left: 30%;
+      top: 30%;
+      width: 40%;
+      background-color: #0097A7;
+      color: white;
+      padding: 20px;
+      padding-top: 0;
+      display: none;
+    }
+
     #seeCurrentActorBtn {
       position: fixed;
       left: 10px;
@@ -124,7 +144,8 @@
     }
 
     #closeCurrentActorBtn,
-    #closeCurrentItemBtn {
+    #closeCurrentItemBtn,
+    #closeResponsePanelBtn {
       position: absolute;
       right: 10px;
       top: 0;
@@ -151,6 +172,11 @@
 </head>
 
 <body>
+  <div id="responsePanel">
+    <button class="btn-buy" id="closeResponsePanelBtn" type="button" data-id="5">Close</button>
+    <h3>Response</h3>
+    <div id="responsePane"></div>
+  </div>
   <button class="btn-buy" id="seeCurrentActorBtn" type="button" data-id="5">See Current Actor</button>
   <div id="currentActor">
     <button class="btn-buy" id="closeCurrentActorBtn" type="button" data-id="5">Close</button>
